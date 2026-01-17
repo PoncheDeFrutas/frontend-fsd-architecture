@@ -1,5 +1,5 @@
 import { onAuthEvent } from "@/shared/api/http";
-import { queryClient } from "@/app/providers/query-client";
+import { queryClient } from "@/shared/lib/react-query";
 import { authKeys } from "./auth.keys";
 
 /**

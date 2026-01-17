@@ -8,3 +8,4 @@ export { useMeQuery } from "./model/auth.queries";
 // API public
 export { authService } from "./api/auth.service";
 export * from "./api/auth.schemas";
+export type { MeResponse } from "./api/auth.service";

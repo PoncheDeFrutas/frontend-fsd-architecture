@@ -22,11 +22,10 @@ export function requestInterceptor(
         ...(token ? { Authorization: `Bearer ${token}` } : {}),
     });
 
-    config.headers = nextHeaders as any;
+    config.headers = nextHeaders as InternalAxiosRequestConfig["headers"];
 
     // Debug logging (safe)
     if (ENV.API_DEBUG) {
-        // eslint-disable-next-line no-console
         console.debug("[HTTP request]", {
             method: upper(config.method),
             url: safeUrl(config.url),

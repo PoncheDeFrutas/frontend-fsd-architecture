@@ -1,5 +1,5 @@
 import { redirect } from "@tanstack/react-router";
-import { queryClient } from "@/app/providers/query-client";
+import { queryClient } from "@/shared/lib/react-query";
 import { authKeys } from "./auth.keys";
 import { authService, type MeResponse } from "@/features/auth";
 import type { Permission, Role } from "@/entities/user";

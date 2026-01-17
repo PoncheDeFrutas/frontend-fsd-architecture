@@ -1,30 +1,13 @@
 import { ApiError } from "@/shared/api/http";
-import type { User, Permission } from "@/entities/user";
-import type { SignInBody } from "@/features/auth";
-import { createContext, useEffect, useMemo, type ReactNode } from "react";
+import type { User } from "@/entities/user";
+import { useEffect, useMemo, type ReactNode } from "react";
 import { initAuthEventsBridge } from "./auth.events-bridge";
 import {
     useMeQuery,
     useSignInMutation,
     useSignOutMutation,
 } from "./auth.queries";
-
-export type AuthStatus = "loading" | "authenticated" | "anonymous";
-
-export type AuthContextValue = {
-    status: AuthStatus;
-    user: User | null;
-
-    isAdmin: boolean;
-    hasPermission: (perm: Permission) => boolean;
-
-    signIn: (body: SignInBody) => Promise<void>;
-    signOut: () => Promise<void>;
-
-    meQuery: ReturnType<typeof useMeQuery>;
-};
-
-export const AuthContext = createContext<AuthContextValue | null>(null);
+import { AuthContext, type AuthContextValue, type AuthStatus } from "./auth.context";
 
 type Props = {
     children: ReactNode;

@@ -31,11 +31,15 @@ export async function responseErrorInterceptor(error: AxiosError) {
             await refreshSession();
 
             const token = getAccessToken();
-            if (token) {
+            if (token && config.headers) {
                 config.headers.Authorization = `Bearer ${token}`;
             }
-            throw Object.assign(new Error('__RETRY_WITH_INSTANCE__'), { config });
-        } catch (error) {
+            const retrySignal = new Error(
+                "__RETRY_WITH_INSTANCE__",
+            ) as Error & { config: RetryableConfig };
+            retrySignal.config = config;
+            throw retrySignal;
+        } catch {
             throw normalized;
         }
     }
@@ -54,12 +58,12 @@ export function createResponseInterceptor(axiosInstance: {
     return async (error: AxiosError) => {
         try {
             return await responseErrorInterceptor(error);
-        } catch (error) {
-            if (error instanceof Error && error.message === '__RETRY_WITH_INSTANCE__') {
-                const config = (error as any).config as InternalAxiosRequestConfig;
+        } catch (err) {
+            if (err instanceof Error && err.message === "__RETRY_WITH_INSTANCE__") {
+                const config = (err as Error & { config: InternalAxiosRequestConfig }).config;
                 return axiosInstance.request(config);
             }
-            throw error;
+            throw err;
         }
     };
 }

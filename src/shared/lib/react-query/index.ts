@@ -2,4 +2,4 @@ export {
     queryClient,
     createQueryClient,
     isQueryDevtoolsEnabled,
-} from "@/shared/lib/react-query";
+} from "./query-client";
