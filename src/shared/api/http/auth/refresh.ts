@@ -2,6 +2,7 @@ import axios, { type AxiosInstance } from "axios";
 import { clearAccessToken, setAccessToken } from "./token-store";
 import { notifyUnauthorized } from "./auth-events";
 import { ENV } from "../../config/env";
+import { ENDPOINTS } from "../../config/endpoints";
 
 type RefreshResponse = {
     accessToken: string;
@@ -36,7 +37,7 @@ export async function refreshSession(): Promise<string> {
     refreshingPromise = (async () => {
         try {
             const response =
-                await refreshClient.post<RefreshResponse>("/auth/refresh");
+                await refreshClient.post<RefreshResponse>(ENDPOINTS.auth.refresh);
             const token = response.data?.accessToken;
 
             if (!token || typeof token !== "string") {
