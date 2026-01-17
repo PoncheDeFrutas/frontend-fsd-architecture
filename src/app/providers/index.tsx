@@ -1,13 +1,13 @@
-import type { ReactNode } from "react";
 import { QueryProvider } from "./query-client";
 import { AuthProvider } from "@/features/auth/model/auth.provider";
+import { AppRouter } from "./router";
 
-type Props = { children: ReactNode };
-
-export function AppProviders({ children }: Props) {
+export function AppProviders() {
     return (
         <QueryProvider>
-            <AuthProvider>{children}</AuthProvider>
+            <AuthProvider>
+                <AppRouter />
+            </AuthProvider>
         </QueryProvider>
     );
 }
