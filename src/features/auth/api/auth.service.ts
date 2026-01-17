@@ -1,23 +1,31 @@
-import { ENDPOINTS } from "../config/endpoints";
-import { http, httpz } from "../http";
-import { setAccessToken, clearAccessToken } from "../http/auth/token-store";
+import { ENDPOINTS } from "@/shared/api/config/endpoints";
+import { http, httpz } from "@/shared/api/http";
+import { clearAccessToken, setAccessToken } from "@/shared/api/http/auth/token-store";
+import { mapMeDto } from "@/entities/user/api/user.mapper";
+import type { User } from "@/entities/user/model/types";
 
 import {
     meResponseSchema,
     signInBodySchema,
     tokenResponseSchema,
-    type MeResponse,
     type SignInBody,
     type TokenResponse,
-} from "../schemas/auth.schemas";
+} from "./auth.schemas";
+
+export type MeResponse = {
+    user: User;
+};
 
 export const authService = {
     /**
      * Returns the current session user (role + permissions).
      * Backend should return 401 if not authenticated.
      */
-    me(signal?: AbortSignal): Promise<MeResponse> {
-        return httpz.get(meResponseSchema, ENDPOINTS.auth.me, { signal });
+    async me(signal?: AbortSignal): Promise<MeResponse> {
+        const dto = await httpz.get(meResponseSchema, ENDPOINTS.auth.me, {
+            signal,
+        });
+        return mapMeDto(dto);
     },
 
     /**

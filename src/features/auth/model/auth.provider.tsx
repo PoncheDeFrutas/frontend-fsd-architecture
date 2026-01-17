@@ -1,6 +1,6 @@
 import { ApiError } from "@/shared/api/http";
-import type { AuthUser, Permission } from "@/shared/api/http/types";
-import type { SignInBody } from "@/shared/api/schemas/auth.schemas";
+import type { User, Permission } from "@/entities/user/model/types";
+import type { SignInBody } from "@/features/auth/api/auth.schemas";
 import { createContext, useEffect, useMemo, type ReactNode } from "react";
 import { initAuthEventsBridge } from "./auth.events-bridge";
 import {
@@ -13,7 +13,7 @@ export type AuthStatus = "loading" | "authenticated" | "anonymous";
 
 export type AuthContextValue = {
     status: AuthStatus;
-    user: AuthUser | null;
+    user: User | null;
 
     isAdmin: boolean;
     hasPermission: (perm: Permission) => boolean;
@@ -58,9 +58,7 @@ export function AuthProvider({ children }: Props) {
         return meQuery.data?.user ? "authenticated" : "anonymous";
     }, [meQuery.isLoading, meQuery.isError, meQuery.data, meQuery.error]);
 
-    const user: AuthUser | null = meQuery.data?.user
-        ? { ...meQuery.data.user, roles: [meQuery.data.user.role] }
-        : null;
+    const user: User | null = meQuery.data?.user ?? null;
 
     const value: AuthContextValue = useMemo(() => {
         const perms = new Set(user?.permissions ?? []);
@@ -69,7 +67,7 @@ export function AuthProvider({ children }: Props) {
             status,
             user,
 
-            isAdmin: user?.roles.includes("admin") ?? false,
+            isAdmin: user?.role === "admin",
             hasPermission: (perm) => perms.has(perm),
 
             signIn: async (body) => {

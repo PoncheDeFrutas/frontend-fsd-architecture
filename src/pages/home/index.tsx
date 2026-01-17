@@ -12,7 +12,7 @@ export default function HomePage() {
             {user ? (
                 <>
                     <p>Bienvenido, {user.email}</p>
-                    <p>Rol: {user.roles}</p>
+                    <p>Rol: {user.role}</p>
 
                     <div className="flex gap-2">
                         <button

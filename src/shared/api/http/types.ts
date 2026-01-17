@@ -1,31 +1,3 @@
-export type Role = 'admin' | 'user';
-
-export type Permission =
-    | 'users:read'
-    | 'users:write'
-    | 'orders:read'
-    | 'orders:write'
-    | 'settings:manage'
-
-/**
- * Authenticated user information
- * @interface AuthUser
- * @property {string} id - Unique identifier for the user
- * @property {string} email - Email address of the user
- * @property {Role[]} roles - Roles assigned to the user
- * @property {Permission[]} permissions - Permissions granted to the user
- */
-export interface AuthUser {
-    id: string;
-    email: string;
-    roles: Role[];
-    permissions: Permission[];
-}
-
-export interface MeResponse {
-    user: AuthUser;
-}
-
 /**
  * API Error Payload
  * @interface ApiErrorPayload

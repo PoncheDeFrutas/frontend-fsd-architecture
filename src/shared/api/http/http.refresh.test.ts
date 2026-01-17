@@ -1,5 +1,5 @@
 import { describe, it, expect } from "vitest";
-import { authService } from "@/shared/api/services/auth.service";
+import { authService } from "@/features/auth/api/auth.service";
 import { httpClient } from "@/shared/api/http/client";
 import { setAccessToken } from "@/shared/api/http/auth/token-store";
 import { ENDPOINTS } from "@/shared/api/config/endpoints";

@@ -1,10 +1,9 @@
 import { redirect } from "@tanstack/react-router";
 import { queryClient } from "@/app/providers/query-client";
 import { authKeys } from "./auth.keys";
-import { authService } from "@/shared/api/services/auth.service";
-import type { Permission } from "@/shared/api/http/types";
+import { authService, type MeResponse } from "@/features/auth/api/auth.service";
+import type { Permission, Role } from "@/entities/user/model/types";
 import { ApiError } from "@/shared/api/http";
-import type { MeResponse } from "@/shared/api/schemas/auth.schemas";
 
 async function ensureMe(): Promise<MeResponse | null> {
     try {
@@ -18,7 +17,7 @@ async function ensureMe(): Promise<MeResponse | null> {
     } catch (err) {
         // 401 => anonymous
         if (err instanceof ApiError && err.status === 401) return null;
-        // other errors are rethrown
+        // other errors: treat as anonymous (could bubble up later if needed)
         return null;
     }
 }
@@ -32,7 +31,7 @@ export function requireAuth() {
     };
 }
 
-export function requireRole(role: "admin" | "user") {
+export function requireRole(role: Role) {
     return async () => {
         const me = await ensureMe();
         if (!me?.user) throw redirect({ to: "/login" });
