@@ -1,14 +1,20 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
-//import App from "./App";
 import "./index.css";
 
 import { AppProviders } from "@/app/providers";
+import { initMSW } from "@/app/providers/msw/init-msw";
 
-ReactDOM.createRoot(document.getElementById("root")!).render(
+async function main() {
+  await initMSW();
+
+  ReactDOM.createRoot(document.getElementById("root")!).render(
     <React.StrictMode>
-        <AppProviders>
-            <div></div>
-        </AppProviders>
-    </React.StrictMode>,
-);
+      <AppProviders>
+        <div></div>
+      </AppProviders>
+    </React.StrictMode>
+  );
+}
+
+main();
