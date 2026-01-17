@@ -18,11 +18,13 @@
 - `lib/cn.ts` — helper de clases.
 
 ## entities/
+- `user/index.ts` — API pública del dominio User (types, DTO schemas, mappers).
 - `user/model/types.ts` — dominio User, Role, Permission.
 - `user/api/user.dto.ts` — DTOs Zod para User/Me.
 - `user/api/user.mapper.ts` — mapper DTO→dominio (compatibilidad `roles[]`).
 
 ## features/
+- `auth/index.ts` — API pública del feature (provider, hooks, guards, keys, servicio).
 - `auth/api/auth.schemas.ts` — schemas DTO de auth.
 - `auth/api/auth.service.ts` — signIn/me/signOut/refresh (usa httpz + mapper).
 - `auth/model/auth.queries.ts` — hooks React Query.

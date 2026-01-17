@@ -23,8 +23,8 @@ app (providers, router)
 
 ## Decisiones clave
 - Axios vive en `shared/api/http` con interceptores y helpers. Ninguna feature toca axios directo; usan servicios.
-- Dominio aislado en `entities` con DTO + mapper (User). Evita que el UI conozca respuestas crudas.
-- Router central en `app/providers/router`; guards en `features/auth/model/guards`.
+- Dominio aislado en `entities` con DTO + mapper (User) y barrel `entities/user`.
+- Router central en `app/providers/router`; guards exportados desde el barrel de `features/auth`.
 - QueryClient singleton en `app/providers/query-client` para invalidaciones consistentes.
 
 ## Flujo típico

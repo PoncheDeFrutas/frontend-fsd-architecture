@@ -4,9 +4,9 @@
 - Servicio: `src/features/auth/api/auth.service.ts` (signIn, me, signOut, refresh).
 - Schemas: `src/features/auth/api/auth.schemas.ts` (Zod DTOs).
 - Dominio: `src/entities/user/*` (types + mapper).
-- Hooks/queries: `src/features/auth/model/auth.queries.ts`.
-- Provider: `src/features/auth/model/auth.provider.tsx` expone `useAuth`.
-- Guards: `src/features/auth/model/guards.ts` para TanStack Router.
+- Hooks/queries: `src/features/auth/model/auth.queries.ts` (exportados desde `@/features/auth`).
+- Provider: `src/features/auth/model/auth.provider.tsx` expone `useAuth` (importa desde `@/features/auth`).
+- Guards: `src/features/auth/model/guards.ts` para TanStack Router (importa desde `@/features/auth`).
 - Bridge de eventos: `src/features/auth/model/auth.events-bridge.ts` conecta eventos HTTP con cache Query.
 
 ## Flujos
@@ -30,6 +30,8 @@
 
 ## Cómo usar `useAuth`
 ```ts
+import { useAuth } from "@/features/auth";
+
 const { user, status, signIn, signOut, hasPermission, isAdmin } = useAuth();
 ```
 
@@ -39,5 +41,5 @@ const { user, status, signIn, signOut, hasPermission, isAdmin } = useAuth();
 - Los interceptores no reintentan 401 si el refresh falla → emite `unauthorized` y limpia cache.
 
 ## Extender roles/permisos
-- Define nuevos literales en `entities/user/model/types.ts` y en mocks si aplica.
+- Define nuevos literales en `entities/user/model/types.ts` y en mocks si aplica (y expórtalos vía `entities/user` si quieres uso externo).
 - Acepta `roles` array en DTO: el mapper ya soporta `roles[]` opcional y prioriza `role` primario.

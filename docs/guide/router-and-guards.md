@@ -19,7 +19,7 @@ export const catalogRoute = new Route({
 rootRoute.addChildren([catalogRoute]);
 ```
 
-## Guards disponibles (features/auth/model/guards.ts)
+## Guards disponibles (`@/features/auth`)
 - `requireAuth()` → redirige a `/login` si no hay sesión.
 - `requireRole(role)` → redirige a `/login` si no hay sesión o `/forbidden` si rol no coincide.
 - `requirePermission(permission)` → redirige a `/login` o `/forbidden` según corresponda.
@@ -31,6 +31,8 @@ rootRoute.addChildren([catalogRoute]);
 
 ## Ejemplo: ruta protegida por rol
 ```ts
+import { requireRole } from "@/features/auth";
+
 export const adminUsersRoute = new Route({
   getParentRoute: () => rootRoute,
   path: "/admin/users",
@@ -41,6 +43,8 @@ export const adminUsersRoute = new Route({
 
 ## Ejemplo: ruta protegida por permiso
 ```ts
+import { requirePermission } from "@/features/auth";
+
 export const writeUsersRoute = new Route({
   getParentRoute: () => rootRoute,
   path: "/admin/users/write",

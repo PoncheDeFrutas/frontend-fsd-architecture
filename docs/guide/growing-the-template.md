@@ -54,7 +54,7 @@ rootRoute.addChildren([catalogRoute]);
 
 ## Receta: proteger por role/permission
 ```ts
-import { requireRole, requirePermission } from "@/features/auth/model/guards";
+import { requireRole, requirePermission } from "@/features/auth";
 new Route({
   getParentRoute: () => rootRoute,
   path: "/admin/users",
