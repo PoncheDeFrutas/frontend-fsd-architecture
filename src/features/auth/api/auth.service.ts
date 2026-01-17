@@ -1,8 +1,7 @@
 import { ENDPOINTS } from "@/shared/api/config/endpoints";
 import { http, httpz } from "@/shared/api/http";
 import { clearAccessToken, setAccessToken } from "@/shared/api/http/auth/token-store";
-import { mapMeDto } from "@/entities/user/api/user.mapper";
-import type { User } from "@/entities/user/model/types";
+import { meFromDto, type User } from "@/entities/user";
 
 import {
     meResponseSchema,
@@ -25,7 +24,7 @@ export const authService = {
         const dto = await httpz.get(meResponseSchema, ENDPOINTS.auth.me, {
             signal,
         });
-        return mapMeDto(dto);
+        return meFromDto(dto);
     },
 
     /**

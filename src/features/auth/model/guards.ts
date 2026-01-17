@@ -1,8 +1,8 @@
 import { redirect } from "@tanstack/react-router";
 import { queryClient } from "@/app/providers/query-client";
 import { authKeys } from "./auth.keys";
-import { authService, type MeResponse } from "@/features/auth/api/auth.service";
-import type { Permission, Role } from "@/entities/user/model/types";
+import { authService, type MeResponse } from "@/features/auth";
+import type { Permission, Role } from "@/entities/user";
 import { ApiError } from "@/shared/api/http";
 
 async function ensureMe(): Promise<MeResponse | null> {

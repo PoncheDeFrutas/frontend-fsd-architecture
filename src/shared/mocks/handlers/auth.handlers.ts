@@ -1,6 +1,6 @@
 import { http, HttpResponse } from "msw";
 import { ENDPOINTS } from "@/shared/api/config/endpoints";
-import type { Role, Permission } from "@/entities/user/model/types";
+import type { Role, Permission } from "@/entities/user";
 import { ENV } from "@/shared/api/config/env";
 
 const API = ENV.API_BASE_URL.replace(/\/$/, "");

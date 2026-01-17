@@ -13,7 +13,7 @@ function pickPrimaryRole(dto: UserDtoCompat): Role {
     throw new Error("User role is missing from DTO");
 }
 
-export function mapUserDto(dto: UserDtoCompat): User {
+export function userFromDto(dto: UserDtoCompat): User {
     return {
         id: dto.id,
         email: dto.email,
@@ -22,8 +22,8 @@ export function mapUserDto(dto: UserDtoCompat): User {
     };
 }
 
-export function mapMeDto(dto: MeDto): { user: User } {
+export function meFromDto(dto: MeDto): { user: User } {
     return {
-        user: mapUserDto(dto.user),
+        user: userFromDto(dto.user),
     };
 }

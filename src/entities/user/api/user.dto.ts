@@ -1,26 +1,26 @@
 import { z } from "zod";
 
-export const roleDtoSchema = z.union([z.literal("admin"), z.literal("user")]);
-export type RoleDto = z.infer<typeof roleDtoSchema>;
+export const RoleDtoSchema = z.union([z.literal("admin"), z.literal("user")]);
+export type RoleDto = z.infer<typeof RoleDtoSchema>;
 
-export const permissionDtoSchema = z.union([
+export const PermissionDtoSchema = z.union([
     z.literal("users:read"),
     z.literal("users:write"),
     z.literal("orders:read"),
     z.literal("orders:write"),
     z.literal("settings:manage"),
 ]);
-export type PermissionDto = z.infer<typeof permissionDtoSchema>;
+export type PermissionDto = z.infer<typeof PermissionDtoSchema>;
 
-export const userDtoSchema = z.object({
+export const UserDtoSchema = z.object({
     id: z.string(),
     email: z.string().email(),
-    role: roleDtoSchema,
-    permissions: z.array(permissionDtoSchema),
+    role: RoleDtoSchema,
+    permissions: z.array(PermissionDtoSchema),
 });
-export type UserDto = z.infer<typeof userDtoSchema>;
+export type UserDto = z.infer<typeof UserDtoSchema>;
 
-export const meDtoSchema = z.object({
-    user: userDtoSchema,
+export const MeDtoSchema = z.object({
+    user: UserDtoSchema,
 });
-export type MeDto = z.infer<typeof meDtoSchema>;
+export type MeDto = z.infer<typeof MeDtoSchema>;

@@ -1,6 +1,5 @@
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
-import { authService, type MeResponse } from "@/features/auth/api/auth.service";
-import type { SignInBody } from "@/features/auth/api/auth.schemas";
+import { authService, type MeResponse, type SignInBody } from "@/features/auth";
 import { authKeys } from "./auth.keys";
 
 /**

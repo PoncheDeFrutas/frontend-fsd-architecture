@@ -5,7 +5,7 @@ import ForbiddenPage from "@/pages/forbidden";
 import NotFoundPage from "@/pages/_not-found";
 import AdminPage from "@/pages/admin";
 
-import { requireAuth, requireRole } from "@/features/auth/model/guards";
+import { requireAuth, requireRole } from "@/features/auth";
 
 export const rootRoute = new RootRoute({
     component: () => <HomePage />,

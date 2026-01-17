@@ -1,6 +1,6 @@
 import { ApiError } from "@/shared/api/http";
-import type { User, Permission } from "@/entities/user/model/types";
-import type { SignInBody } from "@/features/auth/api/auth.schemas";
+import type { User, Permission } from "@/entities/user";
+import type { SignInBody } from "@/features/auth";
 import { createContext, useEffect, useMemo, type ReactNode } from "react";
 import { initAuthEventsBridge } from "./auth.events-bridge";
 import {

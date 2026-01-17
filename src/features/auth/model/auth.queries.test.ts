@@ -1,5 +1,5 @@
 import { describe, it, expect } from "vitest";
-import { authService } from "@/features/auth/api/auth.service";
+import { authService } from "@/features/auth";
 
 describe("authService + MSW", () => {
     it("signIn then me works", async () => {

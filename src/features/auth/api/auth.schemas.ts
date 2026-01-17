@@ -1,13 +1,13 @@
 import { z } from "zod";
-import { meDtoSchema, userDtoSchema } from "@/entities/user/api/user.dto";
+import { MeDtoSchema, UserDtoSchema } from "@/entities/user";
 
-export const authUserSchema = userDtoSchema;
+export const authUserSchema = UserDtoSchema;
 
-export const meResponseSchema = meDtoSchema;
+export const meResponseSchema = MeDtoSchema;
 export type MeResponseDto = z.infer<typeof meResponseSchema>;
 
 export const signInBodySchema = z.object({
-    email: z.email(),
+    email: z.string().email(),
     password: z.string().min(1),
 });
 export type SignInBody = z.infer<typeof signInBodySchema>;

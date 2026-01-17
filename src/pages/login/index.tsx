@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { useAuth } from "@/features/auth/model/use-auth";
+import { useAuth } from "@/features/auth";
 import { useNavigate } from "@tanstack/react-router";
 
 export default function LoginPage() {

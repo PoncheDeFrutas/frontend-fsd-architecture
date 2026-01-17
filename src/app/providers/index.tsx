@@ -1,5 +1,5 @@
 import { QueryProvider } from "./query-client";
-import { AuthProvider } from "@/features/auth/model/auth.provider";
+import { AuthProvider } from "@/features/auth";
 import { AppRouter } from "./router";
 
 export function AppProviders() {
