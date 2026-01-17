@@ -6,6 +6,8 @@ export { normalizeError } from './errors/normalize-error';
 export { http } from './client-helpers'
 export type { HttpRequestConfig } from './client-helpers';
 
+export { httpz } from "./zod-helpers";
+
 export * from './types';
 
 export {
