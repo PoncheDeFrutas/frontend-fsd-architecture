@@ -4,8 +4,9 @@ import LoginPage from "@/pages/login";
 import ForbiddenPage from "@/pages/forbidden";
 import NotFoundPage from "@/pages/_not-found";
 import AdminPage from "@/pages/admin";
+import OrdersPage from "@/pages/orders";
 
-import { requireAuth, requireRole } from "@/features/auth";
+import { requireAuth, requireRole, requirePermission } from "@/features/auth";
 
 export const rootRoute = new RootRoute({
     component: () => <HomePage />,
@@ -53,10 +54,18 @@ export const adminRoute = new Route({
     component: () => <AdminPage />,
 });
 
+export const ordersRoute = new Route({
+    getParentRoute: () => rootRoute,
+    path: "/orders",
+    beforeLoad: requirePermission("orders:read"),
+    component: () => <OrdersPage />,
+});
+
 export const routeTree = rootRoute.addChildren([
     indexRoute,
     loginRoute,
     forbiddenRoute,
     privateRoute,
     adminRoute,
+    ordersRoute,
 ]);

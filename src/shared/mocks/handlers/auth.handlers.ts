@@ -2,42 +2,11 @@ import { http, HttpResponse } from "msw";
 import { ENDPOINTS } from "@/shared/api/config/endpoints";
 import type { Role, Permission } from "@/entities/user";
 import { ENV } from "@/shared/api/config/env";
+import { session, makeToken, requireAuth } from "../session";
 
 const API = ENV.API_BASE_URL.replace(/\/$/, "");
 
 const url = (path: string) => `${API}${path}`;
-
-type MockSession = {
-    isAuthenticated: boolean;
-    accessToken: string | null;
-    user: {
-        id: string;
-        email: string;
-        role: Role;
-        permissions: Permission[];
-    } | null;
-};
-
-const session: MockSession = {
-    isAuthenticated: false,
-    accessToken: null,
-    user: null
-};
-
-function makeToken() {
-    return `mock_${Math.random().toString(16).slice(2)}`;
-}
-
-function requireAuth(request: Request): boolean {
-    const auth = request.headers.get("authorization");
-    if (!auth) return false;
-    const token = auth.replace(/^Bearer\s+/i, "").trim();
-    return (
-        Boolean(token) &&
-        token === session.accessToken &&
-        session.isAuthenticated
-    );
-}
 
 export const authHandlers = [
     // SIGN IN

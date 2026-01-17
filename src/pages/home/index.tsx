@@ -24,6 +24,13 @@ export default function HomePage() {
 
                         <button
                             className="border rounded px-3 py-1"
+                            onClick={() => navigate({ to: "/orders" })}
+                        >
+                            Pedidos
+                        </button>
+
+                        <button
+                            className="border rounded px-3 py-1"
                             onClick={() => signOut()}
                         >
                             Logout

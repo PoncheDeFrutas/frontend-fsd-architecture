@@ -4,5 +4,8 @@ export const ENDPOINTS = {
         me: '/auth/me',
         signIn: '/auth/sign-in',
         signOut: '/auth/sign-out',
+    },
+    orders: {
+        list: '/orders',
     }
 } as const;

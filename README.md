@@ -14,6 +14,11 @@ pnpm dev
 - `pnpm test` — Vitest con MSW.
 - `pnpm docs:dev` / `docs:build` / `docs:preview` — documentación VitePress.
 
+## Demo vertical slice
+- Ruta protegida `/orders` (TanStack Router + guard `requirePermission("orders:read")`).
+- Datos mock con MSW y React Query.
+- Tests de integración en `src/features/orders/api/orders.service.test.ts`.
+
 ## MSW en desarrollo
 - Activa con `VITE_MSW=true` en `.env` y ejecuta `pnpm dev`.
 - El worker se inicializa en `src/main.tsx` vía `initMSW`.
