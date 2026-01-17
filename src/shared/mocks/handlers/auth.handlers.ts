@@ -98,7 +98,7 @@ export const authHandlers = [
         return HttpResponse.json({ user: session.user });
     }),
 
-    // REFRESH (simula refresh cookie)
+    // REFRESH
     http.post(url(ENDPOINTS.auth.refresh), () => {
         if (!session.isAuthenticated || !session.user) {
             return HttpResponse.json(
