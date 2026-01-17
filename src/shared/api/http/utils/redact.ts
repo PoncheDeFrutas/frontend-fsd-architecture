@@ -1,9 +1,9 @@
 const SENSITIVE_KEYS = new Set([
-    'authorization',
-    'cookie',
-    'set-cookie',
-    'x-csrf-token',
-    'x-xsrf-token',
+    "authorization",
+    "cookie",
+    "set-cookie",
+    "x-csrf-token",
+    "x-xsrf-token",
 ]);
 
 /**
@@ -13,7 +13,7 @@ const SENSITIVE_KEYS = new Set([
  * @returns A new object with sensitive headers redacted.
  */
 export function redactHeaders(
-    headers: Record<string, unknown> | undefined
+    headers: Record<string, unknown> | undefined,
 ): Record<string, unknown> | undefined {
     if (!headers) return headers;
 
@@ -21,7 +21,7 @@ export function redactHeaders(
 
     for (const [k, v] of Object.entries(headers)) {
         if (SENSITIVE_KEYS.has(k.toLowerCase())) {
-            out[k] = '[REDACTED]';
+            out[k] = "[REDACTED]";
         } else {
             out[k] = v;
         }

@@ -1,7 +1,7 @@
 export type AuthEvent =
-    | { type: 'unauthorized' }
-    | { type: 'forbidden' }
-    | { type: 'signed_out' };
+    | { type: "unauthorized" }
+    | { type: "forbidden" }
+    | { type: "signed_out" };
 
 type Listener = (event: AuthEvent) => void;
 
@@ -26,11 +26,11 @@ export function onAuthEvent(cb: Listener): () => void {
 }
 
 export function notifyUnauthorized(): void {
-    emitAuthEvent({ type: 'unauthorized' });
+    emitAuthEvent({ type: "unauthorized" });
 }
 export function notifyForbidden(): void {
-    emitAuthEvent({ type: 'forbidden' });
+    emitAuthEvent({ type: "forbidden" });
 }
 export function notifySignedOut(): void {
-    emitAuthEvent({ type: 'signed_out' });
+    emitAuthEvent({ type: "signed_out" });
 }

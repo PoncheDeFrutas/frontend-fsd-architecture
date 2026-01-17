@@ -59,8 +59,13 @@ export function createResponseInterceptor(axiosInstance: {
         try {
             return await responseErrorInterceptor(error);
         } catch (err) {
-            if (err instanceof Error && err.message === "__RETRY_WITH_INSTANCE__") {
-                const config = (err as Error & { config: InternalAxiosRequestConfig }).config;
+            if (
+                err instanceof Error &&
+                err.message === "__RETRY_WITH_INSTANCE__"
+            ) {
+                const config = (
+                    err as Error & { config: InternalAxiosRequestConfig }
+                ).config;
                 return axiosInstance.request(config);
             }
             throw err;

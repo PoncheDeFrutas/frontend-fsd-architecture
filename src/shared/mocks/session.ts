@@ -25,5 +25,9 @@ export function requireAuth(request: Request): boolean {
     const auth = request.headers.get("authorization");
     if (!auth) return false;
     const token = auth.replace(/^Bearer\\s+/i, "").trim();
-    return Boolean(token) && token === session.accessToken && session.isAuthenticated;
+    return (
+        Boolean(token) &&
+        token === session.accessToken &&
+        session.isAuthenticated
+    );
 }

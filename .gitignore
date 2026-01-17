@@ -34,3 +34,6 @@ docs/.vitepress/temp
 
 # Docs logs
 docs/**/*.log
+
+# Husky cache
+.husky/_

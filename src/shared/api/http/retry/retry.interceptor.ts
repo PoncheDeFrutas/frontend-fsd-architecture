@@ -1,4 +1,8 @@
-import type { AxiosError, AxiosInstance, InternalAxiosRequestConfig } from "axios";
+import type {
+    AxiosError,
+    AxiosInstance,
+    InternalAxiosRequestConfig,
+} from "axios";
 import { normalizeError } from "../errors/normalize-error";
 import { shouldRetry } from "./retry-policy";
 import { getBackoffMs, sleep } from "./backoff";
@@ -18,10 +22,10 @@ type RetryableConfig = InternalAxiosRequestConfig & {
  * @returns An async function to be used as an Axios response error interceptor.
  */
 export function createRetryInterceptor(args: {
-    client: AxiosInstance,
-    maxAttempts?: number,
-    baseDelayMs?: number,
-    capDelayMs?: number
+    client: AxiosInstance;
+    maxAttempts?: number;
+    baseDelayMs?: number;
+    capDelayMs?: number;
 }) {
     const maxAttempts = args.maxAttempts ?? 3;
 
@@ -38,7 +42,7 @@ export function createRetryInterceptor(args: {
             error: normalized,
             method: config.method,
             attempt,
-            maxAttempts
+            maxAttempts,
         });
 
         if (!decision.shouldRetry) throw normalized;
@@ -46,11 +50,11 @@ export function createRetryInterceptor(args: {
         const delay = getBackoffMs({
             attempt,
             baseMs: args.baseDelayMs ?? 250,
-            capMs: args.capDelayMs ?? 4000
+            capMs: args.capDelayMs ?? 4000,
         });
 
         await sleep(delay);
 
         return args.client.request(config);
-    }
+    };
 }

@@ -1,6 +1,9 @@
 import { ENDPOINTS } from "@/shared/api/config/endpoints";
 import { http, httpz } from "@/shared/api/http";
-import { clearAccessToken, setAccessToken } from "@/shared/api/http/auth/token-store";
+import {
+    clearAccessToken,
+    setAccessToken,
+} from "@/shared/api/http/auth/token-store";
 import { meFromDto, type User } from "@/entities/user";
 
 import {

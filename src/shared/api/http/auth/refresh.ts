@@ -36,8 +36,9 @@ export async function refreshSession(): Promise<string> {
 
     refreshingPromise = (async () => {
         try {
-            const response =
-                await refreshClient.post<RefreshResponse>(ENDPOINTS.auth.refresh);
+            const response = await refreshClient.post<RefreshResponse>(
+                ENDPOINTS.auth.refresh,
+            );
             const token = response.data?.accessToken;
 
             if (!token || typeof token !== "string") {

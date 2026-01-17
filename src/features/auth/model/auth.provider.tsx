@@ -7,7 +7,11 @@ import {
     useSignInMutation,
     useSignOutMutation,
 } from "./auth.queries";
-import { AuthContext, type AuthContextValue, type AuthStatus } from "./auth.context";
+import {
+    AuthContext,
+    type AuthContextValue,
+    type AuthStatus,
+} from "./auth.context";
 
 type Props = {
     children: ReactNode;

@@ -4,9 +4,7 @@ export default function NotFoundPage() {
             <h1 className="text-xl font-semibold">
                 404 - Página no encontrada
             </h1>
-            <p className="mt-2">
-                Lo sentimos, la página que buscas no existe.
-            </p>
+            <p className="mt-2">Lo sentimos, la página que buscas no existe.</p>
         </div>
     );
 }

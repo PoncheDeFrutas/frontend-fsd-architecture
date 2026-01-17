@@ -12,8 +12,8 @@ export interface ApiErrorPayload {
 }
 
 export type ApiErrorKind =
-    | 'http'
-    | 'network'
-    | 'timeout'
-    | 'canceled'
-    | 'unknown';
+    | "http"
+    | "network"
+    | "timeout"
+    | "canceled"
+    | "unknown";

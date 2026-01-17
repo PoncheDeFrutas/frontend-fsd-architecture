@@ -1,0 +1,7 @@
+#!/usr/bin/env sh
+
+if [ -n "$SKIP_PREPUSH" ]; then
+    exit 0
+fi
+
+pnpm test:run && pnpm build

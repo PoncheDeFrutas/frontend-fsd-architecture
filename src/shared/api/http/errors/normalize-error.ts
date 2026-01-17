@@ -1,6 +1,6 @@
-import axios, { AxiosError } from 'axios';
-import { ApiError } from './api-error';
-import type { ApiErrorPayload } from '../types';
+import axios, { AxiosError } from "axios";
+import { ApiError } from "./api-error";
+import type { ApiErrorPayload } from "../types";
 
 /**
  * Attempts to extract a request ID from the given headers object.
@@ -8,17 +8,13 @@ import type { ApiErrorPayload } from '../types';
  * @returns The request ID if found; otherwise, undefined.
  */
 function pickRequestId(headers: unknown): string | undefined {
-    if (!headers || typeof headers !== 'object') return undefined;
+    if (!headers || typeof headers !== "object") return undefined;
     const hdrs = headers as Record<string, unknown>;
-    const candidates = [
-        'x-request-id',
-        'x-correlation-id',
-        'request-id',
-    ];
+    const candidates = ["x-request-id", "x-correlation-id", "request-id"];
 
     for (const key of candidates) {
         const value = hdrs[key];
-        if (typeof value === 'string' && value.trim()) return value;
+        if (typeof value === "string" && value.trim()) return value;
     }
     return undefined;
 }
@@ -32,20 +28,20 @@ export function normalizeError(err: unknown): ApiError {
     if (axios.isAxiosError(err)) {
         const ax = err as AxiosError;
 
-        if (ax.code === 'ERR_CANCELED') {
+        if (ax.code === "ERR_CANCELED") {
             return new ApiError({
-                kind: 'canceled',
-                message: 'The request was canceled',
+                kind: "canceled",
+                message: "The request was canceled",
                 url: ax.config?.url,
                 method: ax.config?.method?.toUpperCase(),
                 cause: err,
             });
         }
 
-        if (ax.code === 'ECONNABORTED') {
+        if (ax.code === "ECONNABORTED") {
             return new ApiError({
-                kind: 'timeout',
-                message: 'The request timed out',
+                kind: "timeout",
+                message: "The request timed out",
                 url: ax.config?.url,
                 method: ax.config?.method?.toUpperCase(),
                 cause: err,
@@ -54,8 +50,8 @@ export function normalizeError(err: unknown): ApiError {
 
         if (!ax.response) {
             return new ApiError({
-                kind: 'network',
-                message: ax.message || 'A network error occurred',
+                kind: "network",
+                message: ax.message || "A network error occurred",
                 url: ax.config?.url,
                 method: ax.config?.method?.toUpperCase(),
                 cause: err,
@@ -68,9 +64,9 @@ export function normalizeError(err: unknown): ApiError {
         const requestId = pickRequestId(ax.response.headers);
 
         return ApiError.fromPayload({
-            kind: 'http',
+            kind: "http",
             status,
-            payload: payload ?? { message: 'An unknown error occurred' },
+            payload: payload ?? { message: "An unknown error occurred" },
             fallbackMessage: `HTTP Error ${status}`,
             url: ax.config?.url,
             method: ax.config?.method?.toUpperCase(),
@@ -81,15 +77,15 @@ export function normalizeError(err: unknown): ApiError {
 
     if (err instanceof Error) {
         return new ApiError({
-            kind: 'unknown',
-            message: err.message || 'An unknown error occurred',
+            kind: "unknown",
+            message: err.message || "An unknown error occurred",
             cause: err,
         });
     }
 
     return new ApiError({
-        kind: 'unknown',
-        message: 'An unknown error occurred',
+        kind: "unknown",
+        message: "An unknown error occurred",
         cause: err,
     });
 }

@@ -1,4 +1,8 @@
-import type { AxiosRequestConfig, AxiosResponse, RawAxiosRequestHeaders } from "axios";
+import type {
+    AxiosRequestConfig,
+    AxiosResponse,
+    RawAxiosRequestHeaders,
+} from "axios";
 import { httpClient } from "./client";
 
 /**
@@ -7,7 +11,7 @@ import { httpClient } from "./client";
  */
 export type HttpRequestConfig = Omit<AxiosRequestConfig, "headers"> & {
     headers?: RawAxiosRequestHeaders | Record<string, string>;
-}
+};
 
 /**
  * Unwraps the data from an Axios response promise.
@@ -17,7 +21,7 @@ export type HttpRequestConfig = Omit<AxiosRequestConfig, "headers"> & {
 async function unwrap<T>(promise: Promise<AxiosResponse<T>>): Promise<T> {
     const response = await promise;
     return response.data;
-};
+}
 
 /**
  * A simple HTTP client wrapper around axios to simplify common request patterns.
@@ -39,16 +43,27 @@ export const http = {
         return unwrap<T>(httpClient.delete<T>(url, config));
     },
 
-    post<T, B = unknown>(url: string, data?: B, config?: HttpRequestConfig): Promise<T> {
+    post<T, B = unknown>(
+        url: string,
+        data?: B,
+        config?: HttpRequestConfig,
+    ): Promise<T> {
         return unwrap<T>(httpClient.post<T>(url, data, config));
     },
 
-    put<T, B = unknown>(url: string, data?: B, config?: HttpRequestConfig): Promise<T> {
+    put<T, B = unknown>(
+        url: string,
+        data?: B,
+        config?: HttpRequestConfig,
+    ): Promise<T> {
         return unwrap<T>(httpClient.put<T>(url, data, config));
     },
 
-    patch<T, B = unknown>(url: string, data?: B, config?: HttpRequestConfig): Promise<T> {
+    patch<T, B = unknown>(
+        url: string,
+        data?: B,
+        config?: HttpRequestConfig,
+    ): Promise<T> {
         return unwrap<T>(httpClient.patch<T>(url, data, config));
     },
 } as const;
-

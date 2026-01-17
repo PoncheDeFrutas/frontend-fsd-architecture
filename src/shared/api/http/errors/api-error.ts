@@ -99,6 +99,6 @@ export class ApiError extends Error {
             this.status === 502 ||
             this.status === 503 ||
             this.status === 504
-        )
+        );
     }
 }

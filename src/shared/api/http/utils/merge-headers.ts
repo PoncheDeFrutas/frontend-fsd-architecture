@@ -11,19 +11,20 @@ type AnyHeaders = AxiosRequestHeaders | Record<string, string> | undefined;
  */
 export function mergeHeaders(
     base: AnyHeaders,
-    extra: Record<string, string | undefined>
+    extra: Record<string, string | undefined>,
 ): Record<string, string> {
     const out: Record<string, string> = {};
 
-    if (base && typeof base === 'object') {
+    if (base && typeof base === "object") {
         for (const [k, v] of Object.entries(base as Record<string, string>)) {
-            if (typeof v === 'string') out[k] = v;
-            else if (typeof v === 'number' || typeof v === 'boolean') out[k] = String(v);
+            if (typeof v === "string") out[k] = v;
+            else if (typeof v === "number" || typeof v === "boolean")
+                out[k] = String(v);
         }
     }
 
     for (const [k, v] of Object.entries(extra)) {
-        if (typeof v === 'string') out[k] = v;
+        if (typeof v === "string") out[k] = v;
     }
 
     return out;

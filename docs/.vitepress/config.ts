@@ -3,23 +3,39 @@ import { defineConfig } from "vitepress";
 export default defineConfig({
     lang: "es",
     title: "Frontend FSD Template",
-    description: "Template React + Vite + FSD con Axios, TanStack Query/Router, Zod, MSW y Vitest.",
+    description:
+        "Template React + Vite + FSD con Axios, TanStack Query/Router, Zod, MSW y Vitest.",
     cleanUrls: true,
     themeConfig: {
         nav: [
             { text: "Guía", link: "/guide/getting-started" },
             { text: "Referencia", link: "/reference/file-map" },
-            { text: "Repo", link: "https://github.com/ponche/frontend-fsd-architecture" },
+            {
+                text: "Repo",
+                link: "https://github.com/ponche/frontend-fsd-architecture",
+            },
         ],
         sidebar: {
             "/guide/": [
                 {
                     text: "Guía",
                     items: [
-                        { text: "Introducción", link: "/guide/getting-started" },
-                        { text: "Arquitectura FSD", link: "/guide/architecture-fsd" },
-                        { text: "Cómo crecer", link: "/guide/growing-the-template" },
-                        { text: "Router y Guards", link: "/guide/router-and-guards" },
+                        {
+                            text: "Introducción",
+                            link: "/guide/getting-started",
+                        },
+                        {
+                            text: "Arquitectura FSD",
+                            link: "/guide/architecture-fsd",
+                        },
+                        {
+                            text: "Cómo crecer",
+                            link: "/guide/growing-the-template",
+                        },
+                        {
+                            text: "Router y Guards",
+                            link: "/guide/router-and-guards",
+                        },
                         { text: "Auth", link: "/guide/auth" },
                         { text: "HTTP Client", link: "/guide/http-client" },
                         { text: "Testing", link: "/guide/testing" },
@@ -31,19 +47,35 @@ export default defineConfig({
                 {
                     text: "Referencia",
                     items: [
-                        { text: "Mapa de archivos", link: "/reference/file-map" },
-                        { text: "API pública", link: "/reference/api-reference" },
-                        { text: "Configuración", link: "/reference/configuration" },
-                        { text: "Troubleshooting", link: "/reference/troubleshooting" },
+                        {
+                            text: "Mapa de archivos",
+                            link: "/reference/file-map",
+                        },
+                        {
+                            text: "API pública",
+                            link: "/reference/api-reference",
+                        },
+                        {
+                            text: "Configuración",
+                            link: "/reference/configuration",
+                        },
+                        {
+                            text: "Troubleshooting",
+                            link: "/reference/troubleshooting",
+                        },
                     ],
                 },
             ],
         },
         socialLinks: [
-            { icon: "github", link: "https://github.com/ponche/frontend-fsd-architecture" },
+            {
+                icon: "github",
+                link: "https://github.com/ponche/frontend-fsd-architecture",
+            },
         ],
         footer: {
-            message: "React + Vite + FSD + TanStack Query/Router + MSW + Vitest",
+            message:
+                "React + Vite + FSD + TanStack Query/Router + MSW + Vitest",
         },
     },
 });
