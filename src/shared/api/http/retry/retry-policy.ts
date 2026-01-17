@@ -1,5 +1,5 @@
 import type { ApiError } from "../errors/api-error";
-import { isIdempotentMethod } from "../utils/is-dempotent";
+import { isIdempotentMethod } from "../utils/is-idempotent.ts";
 
 export type RetryDecision = {
     shouldRetry: boolean;
