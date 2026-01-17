@@ -25,3 +25,12 @@ dist-ssr
 
 # Environment variables
 .env
+
+# VitePress build output
+docs/.vitepress/dist
+# VitePress / Vite cache
+docs/.vitepress/cache
+docs/.vitepress/temp
+
+# Docs logs
+docs/**/*.log
