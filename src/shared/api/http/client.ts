@@ -3,6 +3,7 @@ import { ENV } from "../config";
 
 import { requestInterceptor } from "./interceptors/request.interceptor";
 import { createResponseInterceptor } from "./interceptors/response.interceptor";
+import { createRetryInterceptor } from "./retry/retry.interceptor";
 
 /**
  * Create and configure an Axios HTTP client for API requests.
@@ -24,6 +25,17 @@ export function createHttpClient(): AxiosInstance {
 
     // Request interceptor to modify outgoing requests
     client.interceptors.request.use(requestInterceptor);
+
+    // Retry interceptor to handle transient errors
+    client.interceptors.response.use(
+        (res) => res,
+        createRetryInterceptor({
+            client,
+            maxAttempts: 3,
+            baseDelayMs: 250,
+            capDelayMs: 4000,
+        }),
+    );
 
     // Response interceptor to handle responses and errors
     client.interceptors.response.use(
