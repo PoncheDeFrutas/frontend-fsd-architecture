@@ -1,1 +1,1 @@
-// Navigation components placeholder (navbars, tabs)
+export * from "./navbar";
