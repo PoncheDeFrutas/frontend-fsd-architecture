@@ -21,6 +21,20 @@ export const ordersHandlers = [
             );
         }
 
+        const params = new URL(request.url).searchParams;
+        const mode = params.get("mode");
+
+        if (mode === "error") {
+            return HttpResponse.json(
+                { code: "SERVER_ERROR", message: "Orders service failed" },
+                { status: 500 },
+            );
+        }
+
+        if (mode === "empty") {
+            return HttpResponse.json({ orders: [] });
+        }
+
         if (!session.user.permissions.includes("orders:read")) {
             return HttpResponse.json(
                 { code: "FORBIDDEN", message: "Missing orders:read" },

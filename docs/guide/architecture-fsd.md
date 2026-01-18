@@ -28,7 +28,7 @@ app (providers, router)
 - Axios vive en `shared/api/http` con interceptores y helpers. Ninguna feature toca axios directo; usan servicios.
 - Dominio aislado en `entities` con DTO + mapper (User) y barrel `entities/user`.
 - Router central en `app/providers/router`; guards exportados desde el barrel de `features/auth`.
-- QueryClient singleton en `app/providers/query-client` para invalidaciones consistentes.
+- QueryClient singleton en `shared/lib/react-query` para invalidaciones consistentes.
 
 ## Flujo típico
 
@@ -36,3 +36,18 @@ app (providers, router)
 2. Hook llama a `authService` que usa `httpz` (axios+zod).
 3. `httpz` valida contra schema DTO y mapea a dominio (User).
 4. Router/guards usan QueryClient para cachear `me` y redirigir.
+
+## Vertical slice: Orders (ejemplo canónico)
+
+- Propósito: mostrar ruta protegida con TanStack Router + Query + MSW + estados UI.
+- Mapa de archivos:
+    - Dominio: `src/entities/order` (tipos, DTO, mapper).
+    - Feature: `src/features/orders` (servicio + hook `useOrdersQuery`).
+    - Widget: `src/widgets/orders-list` (renderiza lista o empty).
+    - Página: `src/pages/orders` (usa widget y maneja loading/error/empty/success).
+    - Router: `src/app/providers/router/route-tree.tsx` (`/orders` con guard `requirePermission("orders:read")`).
+    - MSW: `src/shared/mocks/handlers/orders.handlers.ts` (soporta modos éxito, vacío, error via `?mode=`).
+    - Test UI/route: `src/pages/orders/index.test.tsx` (renderiza AppProviders y valida estados con MSW).
+- Notas:
+    - Para ver error/empty en MSW: `GET /orders?mode=empty` retorna lista vacía, `mode=error` retorna 500.
+    - Guard y fetch comparten QueryClient en `shared/lib/react-query` (evita dependencias a `app/`).

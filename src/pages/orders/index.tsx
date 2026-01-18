@@ -1,16 +1,27 @@
 import { useOrdersQuery } from "@/features/orders";
+import { OrdersList } from "@/widgets/orders-list";
 
 export default function OrdersPage() {
     const ordersQuery = useOrdersQuery();
 
     if (ordersQuery.isLoading) {
-        return <div className="p-6">Cargando pedidos...</div>;
+        return (
+            <div className="p-6">
+                <p className="text-sm text-gray-600">Cargando pedidos...</p>
+            </div>
+        );
     }
 
     if (ordersQuery.isError) {
         return (
             <div className="p-6 text-red-600">
-                Error al cargar pedidos. Intenta nuevamente.
+                <p className="font-semibold">Error al cargar pedidos.</p>
+                <button
+                    className="mt-2 underline"
+                    onClick={() => ordersQuery.refetch()}
+                >
+                    Reintentar
+                </button>
             </div>
         );
     }
@@ -26,19 +37,7 @@ export default function OrdersPage() {
                 </p>
             </div>
 
-            <ul className="space-y-2">
-                {orders.map((order) => (
-                    <li
-                        key={order.id}
-                        className="border rounded px-3 py-2 flex justify-between"
-                    >
-                        <span>{order.item}</span>
-                        <span className="text-sm text-gray-700">
-                            {order.status}
-                        </span>
-                    </li>
-                ))}
-            </ul>
+            <OrdersList orders={orders} />
         </div>
     );
 }
