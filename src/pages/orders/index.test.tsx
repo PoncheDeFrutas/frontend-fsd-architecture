@@ -14,7 +14,7 @@ const url = (path: string) => `${API}${path}`;
 describe("OrdersPage route", () => {
     beforeEach(async () => {
         queryClient.clear();
-        window.history.pushState({}, "", "/orders");
+        window.history.pushState({}, "", "/app/orders");
         await authService.signIn({ email: "admin@test.com", password: "123" });
     });
 
@@ -26,7 +26,7 @@ describe("OrdersPage route", () => {
         render(<AppProviders />);
 
         await waitFor(() => screen.getByText("Pedidos"));
-        expect(screen.getByText("Libro FSD")).toBeTruthy();
+        expect(await screen.findByText("Libro FSD")).toBeTruthy();
     });
 
     it("renders empty state", async () => {

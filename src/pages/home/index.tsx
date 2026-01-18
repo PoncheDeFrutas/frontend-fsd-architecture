@@ -17,14 +17,22 @@ export default function HomePage() {
                     <div className="flex gap-2">
                         <button
                             className="border rounded px-3 py-1"
-                            onClick={() => navigate({ to: "/admin" })}
+                            onClick={() =>
+                                navigate({
+                                    to: "/admin" as unknown as "/admin",
+                                })
+                            }
                         >
                             Admin
                         </button>
 
                         <button
                             className="border rounded px-3 py-1"
-                            onClick={() => navigate({ to: "/orders" })}
+                            onClick={() =>
+                                navigate({
+                                    to: "/app/orders" as unknown as "/app",
+                                })
+                            }
                         >
                             Pedidos
                         </button>
@@ -40,7 +48,9 @@ export default function HomePage() {
             ) : (
                 <button
                     className="border rounded px-3 py-1"
-                    onClick={() => navigate({ to: "/login" })}
+                    onClick={() =>
+                        navigate({ to: "/login" as unknown as "/app" })
+                    }
                 >
                     Login
                 </button>

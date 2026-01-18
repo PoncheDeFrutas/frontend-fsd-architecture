@@ -26,7 +26,7 @@ export function requireAuth() {
     return async () => {
         const me = await ensureMe();
         if (!me?.user) {
-            throw redirect({ to: "/login" });
+            throw redirect({ to: "/login" as unknown as "/app" });
         }
     };
 }
@@ -34,17 +34,18 @@ export function requireAuth() {
 export function requireRole(role: Role) {
     return async () => {
         const me = await ensureMe();
-        if (!me?.user) throw redirect({ to: "/login" });
-        if (me.user.role !== role) throw redirect({ to: "/forbidden" });
+        if (!me?.user) throw redirect({ to: "/login" as unknown as "/app" });
+        if (me.user.role !== role)
+            throw redirect({ to: "/forbidden" as unknown as "/app" });
     };
 }
 
 export function requirePermission(permission: Permission) {
     return async () => {
         const me = await ensureMe();
-        if (!me?.user) throw redirect({ to: "/login" });
+        if (!me?.user) throw redirect({ to: "/login" as unknown as "/app" });
         if (!me.user.permissions.includes(permission)) {
-            throw redirect({ to: "/forbidden" });
+            throw redirect({ to: "/forbidden" as unknown as "/app" });
         }
     };
 }
