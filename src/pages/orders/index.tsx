@@ -1,43 +1,59 @@
 import { useOrdersQuery } from "@/features/orders";
 import { OrdersList } from "@/widgets/orders-list";
+import { Card } from "@/shared/ui/layout/card";
+import { Stack } from "@/shared/ui/layout/stack";
+import { Alert } from "@/shared/ui/feedback/alert";
+import { Button } from "@/shared/ui/primitives/button";
+import { Spinner } from "@/shared/ui/feedback";
 
 export default function OrdersPage() {
     const ordersQuery = useOrdersQuery();
 
     if (ordersQuery.isLoading) {
         return (
-            <div className="p-6">
-                <p className="text-sm text-gray-600">Cargando pedidos...</p>
+            <div className="py-6 flex justify-center">
+                <Spinner />
             </div>
         );
     }
 
     if (ordersQuery.isError) {
         return (
-            <div className="p-6 text-red-600">
-                <p className="font-semibold">Error al cargar pedidos.</p>
-                <button
-                    className="mt-2 underline"
-                    onClick={() => ordersQuery.refetch()}
-                >
-                    Reintentar
-                </button>
-            </div>
+            <Card className="bg-surface text-foreground border-border">
+                <Stack gap="3">
+                    <Alert
+                        variant="error"
+                        className="bg-danger text-danger-foreground"
+                    >
+                        Error al cargar pedidos.
+                    </Alert>
+                    <Button
+                        variant="primary"
+                        onClick={() => ordersQuery.refetch()}
+                    >
+                        Reintentar
+                    </Button>
+                </Stack>
+            </Card>
         );
     }
 
     const orders = ordersQuery.data ?? [];
 
     return (
-        <div className="p-6 space-y-4">
+        <Stack gap="4" className="py-2">
             <div>
-                <h1 className="text-xl font-semibold">Pedidos</h1>
-                <p className="text-sm text-gray-600">
+                <p className="text-sm text-muted-foreground">
                     Ruta protegida (permiso orders:read)
                 </p>
+                <h1 className="text-xl font-semibold text-foreground">
+                    Pedidos
+                </h1>
             </div>
 
-            <OrdersList orders={orders} />
-        </div>
+            <Card className="bg-surface text-foreground border-border">
+                <OrdersList orders={orders} />
+            </Card>
+        </Stack>
     );
 }
