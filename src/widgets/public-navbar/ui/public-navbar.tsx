@@ -1,4 +1,5 @@
 import { Navbar, type NavbarItem } from "@/shared/ui/navigation/navbar";
+import { ThemeToggle } from "@/shared/ui/theme-toggle";
 
 const items: NavbarItem[] = [
     { to: "/", label: "Inicio", end: true },
@@ -8,5 +9,12 @@ const items: NavbarItem[] = [
 ];
 
 export function PublicNavbar() {
-    return <Navbar brand="Public" items={items} variant="public" />;
+    return (
+        <Navbar
+            brand="Public"
+            items={items}
+            variant="public"
+            rightSlot={<ThemeToggle />}
+        />
+    );
 }

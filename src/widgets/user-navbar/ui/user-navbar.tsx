@@ -1,6 +1,7 @@
 import { useNavigate } from "@tanstack/react-router";
 import { useAuth } from "@/features/auth";
 import { Navbar, type NavbarItem } from "@/shared/ui/navigation/navbar";
+import { ThemeToggle } from "@/shared/ui/theme-toggle";
 import { Button } from "@/shared/ui/primitives/button";
 
 const items: NavbarItem[] = [
@@ -28,6 +29,7 @@ export function UserNavbar() {
             variant="user"
             rightSlot={
                 <div className="flex items-center gap-3">
+                    <ThemeToggle />
                     {user?.email && (
                         <span className="text-sm text-slate-600">
                             {user.email}

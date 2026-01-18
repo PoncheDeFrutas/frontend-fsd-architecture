@@ -51,7 +51,11 @@ export default function HomePage() {
                         </Button>
                         <Button
                             variant="secondary"
-                            onClick={() => navigate({ to: "/admin" })}
+                            onClick={() =>
+                                navigate({
+                                    to: "/admin" as unknown as "/",
+                                })
+                            }
                         >
                             Panel admin
                         </Button>
