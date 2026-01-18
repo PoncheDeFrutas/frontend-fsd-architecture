@@ -6,6 +6,11 @@ export type CardProps = HTMLAttributes<HTMLDivElement> & {
     description?: ReactNode;
 };
 
+/**
+ * A simple card component with optional title and description.
+ * @param {CardProps} props - The props for the Card component.
+ * @returns {JSX.Element} The rendered Card component.
+ */
 export function Card({
     className,
     children,

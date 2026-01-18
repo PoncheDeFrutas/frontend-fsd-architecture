@@ -1,5 +1,9 @@
 import { cva } from "class-variance-authority";
 
+/**
+ * Button variants using class-variance-authority (CVA).
+ * This defines different styles for buttons based on their variant and size.
+ */
 export const buttonVariants = cva(
     "inline-flex items-center justify-center rounded-md font-medium transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 disabled:opacity-50 disabled:cursor-not-allowed",
     {

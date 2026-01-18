@@ -1,5 +1,8 @@
 import type { Permission, Role } from "@/entities/user";
 
+/**
+ * Mock session data for testing purposes.
+ */
 export type MockSession = {
     isAuthenticated: boolean;
     accessToken: string | null;

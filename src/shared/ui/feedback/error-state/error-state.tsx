@@ -10,6 +10,9 @@ type Props = {
     onHome?: () => void;
 };
 
+/**
+ * ErrorState component to display an error message with optional details and action buttons.
+ */
 export function ErrorState({
     title = "Algo salió mal",
     message = "No pudimos cargar esta sección.",
@@ -24,7 +27,7 @@ export function ErrorState({
                     <p className="text-base font-semibold">{title}</p>
                     <p className="text-sm">{message}</p>
                     {details && (
-                        <p className="text-xs text-muted-foreground break-words">
+                        <p className="text-xs text-muted-foreground wrap-break-word">
                             {details}
                         </p>
                     )}

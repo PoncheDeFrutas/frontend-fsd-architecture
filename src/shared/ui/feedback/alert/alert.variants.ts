@@ -1,5 +1,9 @@
 import { cva } from "class-variance-authority";
 
+/**
+ * Alert component variants using class-variance-authority (CVA).
+ * Defines styles for different alert types: info, success, warning, and error.
+ */
 export const alertVariants = cva(
     "rounded-md border px-4 py-3 text-sm flex gap-2",
     {

@@ -9,6 +9,16 @@ const sizeClass: Record<NonNullable<ContainerProps["size"]>, string> = {
     full: "max-w-none",
 };
 
+/**
+ * A responsive container component that centers its content and applies horizontal padding.
+ *
+ * @param {string} [className] - Additional CSS classes to apply to the container.
+ * @param {React.ReactNode} children - The content to be wrapped inside the container.
+ * @param {'sm' | 'md' | 'lg' | 'xl' | 'full'} [size='lg'] - The maximum width of the container.
+ * @param {boolean} [padded=true] - Whether to apply horizontal padding to the container.
+ * @param {React.HTMLAttributes<HTMLDivElement>} [props] - Additional HTML attributes for the container div.
+ * @returns {JSX.Element} The rendered container component.
+ */
 export function Container({
     className,
     children,

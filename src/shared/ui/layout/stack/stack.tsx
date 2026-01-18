@@ -28,6 +28,13 @@ const justifyClass: Record<NonNullable<StackProps["justify"]>, string> = {
     between: "justify-between",
 };
 
+/**
+ * A flexible layout component that arranges its children
+ * in a stack (either vertically or horizontally)
+ * with customizable direction, gap, alignment, and justification.
+ * @param {StackProps} props - The properties for configuring the Stack component.
+ * @returns {JSX.Element} The rendered Stack component.
+ */
 export function Stack({
     className,
     children,
