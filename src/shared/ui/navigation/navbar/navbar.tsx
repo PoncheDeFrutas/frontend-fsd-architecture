@@ -3,6 +3,9 @@ import { cn } from "@/shared/lib/cn";
 import { Container } from "@/shared/ui/layout/container";
 import type { NavbarItem, NavbarProps, NavbarVariant } from "./navbar.types";
 
+/**
+ * Styles for different navbar variants
+ */
 const variantStyles: Record<
     NavbarVariant,
     { nav: string; brand: string; link: string }
@@ -24,6 +27,11 @@ const variantStyles: Record<
     },
 };
 
+/**
+ * Navbar component
+ * @param props Navbar properties
+ * @returns Navbar JSX element
+ */
 export function Navbar({
     items,
     brand,
@@ -68,6 +76,11 @@ export function Navbar({
     );
 }
 
+/**
+ * Navbar link component
+ * @param param0 Component properties
+ * @returns Navbar link JSX element
+ */
 function NavbarLink({
     item,
     variant,

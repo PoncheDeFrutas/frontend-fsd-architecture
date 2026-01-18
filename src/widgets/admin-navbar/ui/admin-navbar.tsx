@@ -8,6 +8,11 @@ const items: NavbarItem[] = [
     { to: "/app/orders", label: "Pedidos" },
 ];
 
+/**
+ * Admin navigation bar component.
+ * Adds admin-specific navigation items and logout functionality.
+ * @returns AdminNavbar JSX element
+ */
 export function AdminNavbar() {
     const { user, signOut } = useAuth();
     const navigate = useNavigate();

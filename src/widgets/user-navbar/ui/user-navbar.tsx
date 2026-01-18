@@ -8,6 +8,10 @@ const items: NavbarItem[] = [
     { to: "/app/private", label: "Privada" },
 ];
 
+/**
+ * User navigation bar component.
+ * Displays user information and navigation links.
+ */
 export function UserNavbar() {
     const { user, signOut } = useAuth();
     const navigate = useNavigate();
