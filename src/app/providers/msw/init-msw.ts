@@ -1,3 +1,9 @@
+/**
+ * Initializes Mock Service Worker (MSW) in development environment.
+ * MSW is only activated if the VITE_MSW environment variable is set to "true".
+ * This function dynamically imports the MSW worker and starts it with
+ * unhandled requests set to "warn".
+ */
 export async function initMSW() {
     if (!import.meta.env.DEV) return;
 

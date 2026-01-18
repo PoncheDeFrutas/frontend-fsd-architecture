@@ -3,6 +3,10 @@ import { Container } from "@/shared/ui/layout/container";
 import { AdminNavbar } from "@/widgets/admin-navbar";
 import { AuthProvider } from "@/features/auth";
 
+/**
+ * Admin layout component that wraps admin pages with authentication and styling.
+ * @returns {JSX.Element} The admin layout component.
+ */
 export function AdminLayout() {
     return (
         <AuthProvider>
