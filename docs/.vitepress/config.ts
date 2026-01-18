@@ -42,6 +42,7 @@ export default defineConfig({
                             text: "UI",
                             items: [
                                 { text: "Catálogo UI", link: "/guide/ui/" },
+                                { text: "Tema", link: "/guide/ui/theme" },
                                 { text: "Button", link: "/guide/ui/button" },
                                 {
                                     text: "Container",
