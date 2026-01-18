@@ -1,5 +1,9 @@
 import { z } from "zod";
 
+/**
+ * Schema and Type for Order Data Transfer Object (DTO).
+ * Represents an order with its associated details.
+ */
 export const OrderDtoSchema = z.object({
     id: z.string(),
     item: z.string(),
@@ -7,6 +11,10 @@ export const OrderDtoSchema = z.object({
 });
 export type OrderDto = z.infer<typeof OrderDtoSchema>;
 
+/**
+ * Schema and Type for Orders Response Data Transfer Object (DTO).
+ * Represents a response containing multiple orders.
+ */
 export const OrdersResponseSchema = z.object({
     orders: z.array(OrderDtoSchema),
 });
