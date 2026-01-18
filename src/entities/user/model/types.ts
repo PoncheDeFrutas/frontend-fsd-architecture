@@ -1,3 +1,6 @@
+/**
+ * Types related to the User entity.
+ */
 export type Role = "admin" | "user";
 
 export type Permission =
