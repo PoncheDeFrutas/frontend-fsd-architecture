@@ -6,6 +6,10 @@ import {
     type Order,
 } from "@/entities/order";
 
+/**
+ * Service for interacting with orders API endpoints.
+ * Provides methods to fetch and manipulate order data.
+ */
 export const ordersService = {
     async list(signal?: AbortSignal): Promise<Order[]> {
         const dto = await httpz.get(
