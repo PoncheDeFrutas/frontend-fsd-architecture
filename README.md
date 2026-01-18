@@ -19,7 +19,7 @@ pnpm dev
 
 ## Demo vertical slice
 
-- Ruta protegida `/orders` (TanStack Router + guard `requirePermission("orders:read")`).
+- Ruta protegida `/app/orders` (TanStack Router + guard `requirePermission("orders:read")`).
 - Datos mock con MSW y React Query.
 - Tests de integración en `src/features/orders/api/orders.service.test.ts`.
 

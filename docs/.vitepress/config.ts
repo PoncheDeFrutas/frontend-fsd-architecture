@@ -38,6 +38,19 @@ export default defineConfig({
                         },
                         { text: "Auth", link: "/guide/auth" },
                         { text: "HTTP Client", link: "/guide/http-client" },
+                        {
+                            text: "UI",
+                            items: [
+                                { text: "Catálogo UI", link: "/guide/ui/" },
+                                { text: "Button", link: "/guide/ui/button" },
+                                {
+                                    text: "Container",
+                                    link: "/guide/ui/container",
+                                },
+                                { text: "Stack", link: "/guide/ui/stack" },
+                                { text: "Alert", link: "/guide/ui/alert" },
+                            ],
+                        },
                         { text: "Testing", link: "/guide/testing" },
                         { text: "MSW en Dev", link: "/guide/msw-dev" },
                     ],

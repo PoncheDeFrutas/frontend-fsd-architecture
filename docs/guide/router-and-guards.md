@@ -10,15 +10,15 @@
 
 ```ts
 import { Route } from "@tanstack/react-router";
-import { rootRoute } from "./route-tree";
+import { publicLayoutRoute } from "./route-tree";
 import CatalogPage from "@/pages/catalog";
 
 export const catalogRoute = new Route({
-  getParentRoute: () => rootRoute,
+  getParentRoute: () => publicLayoutRoute,
   path: "/catalog",
   component: () => <CatalogPage />,
 });
-rootRoute.addChildren([catalogRoute]);
+publicLayoutRoute.addChildren([catalogRoute]);
 ```
 
 ## Guards disponibles (`@/features/auth`)
@@ -64,3 +64,15 @@ export const writeUsersRoute = new Route({
 - El refresh se hace en axios; los guards solo redirigen según cache de `/me`.
 - No llames `authService.me` directo en componentes: usa `useMeQuery` o `requireAuth`.
 - Si cambias rutas de login/forbidden, actualiza guards.
+
+## Layouts + navbars
+
+- Los layouts viven en `src/app/layouts/*` y solo renderizan navbar (widgets) + `<Outlet />`.
+- Navbars están en `src/widgets/*-navbar` para cada contexto:
+    - `PublicLayout` → `PublicNavbar` (rutas públicas, p. ej. `/`, `/login`).
+    - `UserLayout` → `UserNavbar` (rutas autenticadas bajo `/app/*`, p. ej. `/app/orders`, `/app/private`).
+    - `AdminLayout` → `AdminNavbar` (rutas admin bajo `/admin/*`).
+- Para colgar nuevas rutas:
+    - Públicas: usa `publicLayoutRoute.addChildren([...])`.
+    - Usuario autenticado: `userLayoutRoute` (hereda `requireAuth`).
+    - Admin: `adminLayoutRoute` (hereda `requireRole("admin")`; añade permisos específicos en hijos si aplica).

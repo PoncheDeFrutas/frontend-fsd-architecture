@@ -45,7 +45,7 @@ app (providers, router)
     - Feature: `src/features/orders` (servicio + hook `useOrdersQuery`).
     - Widget: `src/widgets/orders-list` (renderiza lista o empty).
     - Página: `src/pages/orders` (usa widget y maneja loading/error/empty/success).
-    - Router: `src/app/providers/router/route-tree.tsx` (`/orders` con guard `requirePermission("orders:read")`).
+    - Router: `src/app/providers/router/route-tree.tsx` (`/app/orders` con guard `requirePermission("orders:read")`).
     - MSW: `src/shared/mocks/handlers/orders.handlers.ts` (soporta modos éxito, vacío, error via `?mode=`).
     - Test UI/route: `src/pages/orders/index.test.tsx` (renderiza AppProviders y valida estados con MSW).
 - Notas:
