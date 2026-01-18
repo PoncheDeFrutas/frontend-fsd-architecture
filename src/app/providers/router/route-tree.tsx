@@ -5,6 +5,7 @@ import ForbiddenPage from "@/pages/forbidden";
 import NotFoundPage from "@/pages/_not-found";
 import AdminPage from "@/pages/admin";
 import OrdersPage from "@/pages/orders";
+import UiPlaygroundPage from "@/pages/ui";
 
 import { requireAuth, requireRole, requirePermission } from "@/features/auth";
 import { PublicLayout } from "@/app/layouts/public-layout";
@@ -46,6 +47,12 @@ export const forbiddenRoute = new Route({
     component: () => <ForbiddenPage />,
 });
 
+export const uiRoute = new Route({
+    getParentRoute: () => publicLayoutRoute,
+    path: "/ui",
+    component: () => <UiPlaygroundPage />,
+});
+
 export const userLayoutRoute = new Route({
     getParentRoute: () => rootRoute,
     path: "/app",
@@ -79,7 +86,12 @@ export const adminRoute = new Route({
     component: () => <AdminPage />,
 });
 
-publicLayoutRoute.addChildren([indexRoute, loginRoute, forbiddenRoute]);
+publicLayoutRoute.addChildren([
+    indexRoute,
+    loginRoute,
+    forbiddenRoute,
+    uiRoute,
+]);
 userLayoutRoute.addChildren([ordersRoute, privateRoute]);
 adminLayoutRoute.addChildren([adminRoute]);
 

@@ -3,6 +3,7 @@ import { Container } from "@/shared/ui/layout/container";
 
 const links = [
     { to: "/", label: "Inicio" },
+    { to: "/ui", label: "UI" },
     { to: "/login", label: "Login" },
     { to: "/app/orders", label: "Pedidos" },
 ];
