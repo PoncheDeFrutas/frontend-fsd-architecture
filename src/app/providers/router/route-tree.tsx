@@ -10,6 +10,7 @@ import { requireAuth, requireRole, requirePermission } from "@/features/auth";
 import { PublicLayout } from "@/app/layouts/public-layout";
 import { UserLayout } from "@/app/layouts/user-layout";
 import { AdminLayout } from "@/app/layouts/admin-layout";
+import { RootErrorComponent } from "./root-error";
 
 export const rootRoute = new RootRoute({
     component: () => (
@@ -18,6 +19,7 @@ export const rootRoute = new RootRoute({
         </div>
     ),
     notFoundComponent: () => <NotFoundPage />,
+    errorComponent: RootErrorComponent,
 });
 
 export const publicLayoutRoute = new Route({
