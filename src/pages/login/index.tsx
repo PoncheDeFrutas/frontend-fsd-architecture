@@ -10,6 +10,9 @@ import { Alert } from "@/shared/ui/feedback/alert";
 
 import { AuthProvider } from "@/features/auth";
 
+/**
+ * Login content component handling user authentication.
+ */
 function LoginContent() {
     const { signIn, status, user } = useAuth();
     const navigate = useNavigate();
@@ -117,6 +120,10 @@ function LoginContent() {
     );
 }
 
+/**
+ * Login page component wrapping the login content with authentication provider.
+ * @returns The Login page JSX element.
+ */
 export default function LoginPage() {
     return (
         <AuthProvider bootstrap={false}>

@@ -6,6 +6,10 @@ import { Input } from "@/shared/ui/primitives/input";
 import { Label } from "@/shared/ui/primitives/label";
 import { Alert, Spinner } from "@/shared/ui/feedback";
 
+/**
+ * UI Playground Page
+ * Showcases various UI components from the shared/ui library.
+ */
 export default function UiPlaygroundPage() {
     return (
         <div className="bg-background text-foreground py-6">

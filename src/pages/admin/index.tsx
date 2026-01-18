@@ -2,6 +2,13 @@ import { Card } from "@/shared/ui/layout/card";
 import { Stack } from "@/shared/ui/layout/stack";
 import { Alert } from "@/shared/ui/feedback/alert";
 
+/**
+ * AdminPage component.
+ * This page is protected by an admin role guard.
+ * It serves as a placeholder for admin-specific modules or dashboards.
+ *
+ * @return JSX.Element The rendered admin page component.
+ */
 export default function AdminPage() {
     return (
         <Stack gap="4" className="py-4">

@@ -3,6 +3,10 @@ import { Card } from "@/shared/ui/layout/card";
 import { Stack } from "@/shared/ui/layout/stack";
 import { Button } from "@/shared/ui/primitives/button";
 
+/**
+ * Home page component welcoming users and providing navigation options.
+ * @returns The Home page JSX element.
+ */
 export default function HomePage() {
     const navigate = useNavigate();
 

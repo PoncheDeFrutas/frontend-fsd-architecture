@@ -6,6 +6,9 @@ import { Alert } from "@/shared/ui/feedback/alert";
 import { Button } from "@/shared/ui/primitives/button";
 import { Spinner } from "@/shared/ui/feedback";
 
+/**
+ * Page component to display a list of orders.
+ */
 export default function OrdersPage() {
     const ordersQuery = useOrdersQuery();
 

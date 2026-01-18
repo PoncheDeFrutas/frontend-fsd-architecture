@@ -3,6 +3,10 @@ import { ApiError } from "./errors/api-error";
 import { http } from "./client-helpers";
 import type { HttpRequestConfig } from "./client-helpers";
 
+/**
+ * Throws a standardized ApiError for Zod validation issues.
+ * @param args - The arguments containing error details.
+ */
 function throwZodError(args: {
     url: string;
     method: string;
@@ -24,6 +28,14 @@ function throwZodError(args: {
     });
 }
 
+/**
+ * Parses raw data using the provided Zod schema or throws an ApiError if parsing fails.
+ * @param schema - The Zod schema to validate against.
+ * @param raw - The raw data to be parsed.
+ * @param url - The URL of the API request.
+ * @param method - The HTTP method of the API request.
+ * @returns The parsed data of type T.
+ */
 async function parseOrThrow<T>(
     schema: ZodType<T>,
     raw: unknown,
@@ -42,6 +54,12 @@ async function parseOrThrow<T>(
     return parsed.data;
 }
 
+/**
+ * HTTP client with Zod schema validation for responses.
+ * Each method fetches data and validates it against the provided schema.
+ * If validation fails, an ApiError is thrown.
+ * @see http - for the underlying HTTP client without schema validation.
+ */
 export const httpz = {
     async get<T>(
         schema: ZodType<T>,

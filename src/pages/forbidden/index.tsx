@@ -4,6 +4,11 @@ import { Stack } from "@/shared/ui/layout/stack";
 import { Alert } from "@/shared/ui/feedback/alert";
 import { Button } from "@/shared/ui/primitives/button";
 
+/**
+ * Page displayed when the user tries to access a forbidden resource (403).
+ *
+ * @returns The ForbiddenPage component.
+ */
 export default function ForbiddenPage() {
     const navigate = useNavigate();
 
