@@ -6,12 +6,13 @@ import { authKeys } from "./auth.keys";
  * Fetches the current authenticated user's information.
  * @return A React Query object containing the user's information.
  */
-export function useMeQuery() {
+export function useMeQuery(options?: { enabled?: boolean }) {
     return useQuery({
         queryKey: authKeys.me(),
         queryFn: ({ signal }) => authService.me(signal),
         staleTime: 60_000,
         retry: false,
+        enabled: options?.enabled ?? true,
     });
 }
 

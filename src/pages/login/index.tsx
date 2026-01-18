@@ -8,7 +8,9 @@ import { Input } from "@/shared/ui/primitives/input";
 import { Button } from "@/shared/ui/primitives/button";
 import { Alert } from "@/shared/ui/feedback/alert";
 
-export default function LoginPage() {
+import { AuthProvider } from "@/features/auth";
+
+function LoginContent() {
     const { signIn, status, user } = useAuth();
     const navigate = useNavigate();
 
@@ -112,5 +114,13 @@ export default function LoginPage() {
                 </Stack>
             </Card>
         </div>
+    );
+}
+
+export default function LoginPage() {
+    return (
+        <AuthProvider bootstrap={false}>
+            <LoginContent />
+        </AuthProvider>
     );
 }

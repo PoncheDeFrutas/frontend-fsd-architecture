@@ -15,16 +15,17 @@ import {
 
 type Props = {
     children: ReactNode;
+    bootstrap?: boolean;
 };
 
-export function AuthProvider({ children }: Props) {
+export function AuthProvider({ children, bootstrap = true }: Props) {
     // init bridge once
     useEffect(() => {
         const unsubscribe = initAuthEventsBridge();
         return () => unsubscribe();
     }, []);
 
-    const meQuery = useMeQuery();
+    const meQuery = useMeQuery({ enabled: bootstrap });
     const signInMutation = useSignInMutation();
     const signOutMutation = useSignOutMutation();
 

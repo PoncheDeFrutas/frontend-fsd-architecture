@@ -48,6 +48,13 @@ const { user, status, signIn, signOut, hasPermission, isAdmin } = useAuth();
 - Retry está desactivado en React Query para `me` (controlado en axios).
 - Los interceptores no reintentan 401 si el refresh falla → emite `unauthorized` y limpia cache.
 
+## Dónde se monta `AuthProvider`
+
+- Globalmente ya no se monta en rutas públicas para evitar `/auth/me` anónimo.
+- Se monta en `UserLayout` y `AdminLayout` (rutas protegidas) con bootstrap normal.
+- `LoginPage` usa `<AuthProvider bootstrap={false}>` para acceder a `signIn` sin disparar `/auth/me`.
+- Si necesitas usar `useAuth` en una ruta pública, envuelve el componente con `AuthProvider` y `bootstrap={false}` (no hace fetch inicial).
+
 ## Extender roles/permisos
 
 - Define nuevos literales en `entities/user/model/types.ts` y en mocks si aplica (y expórtalos vía `entities/user` si quieres uso externo).
