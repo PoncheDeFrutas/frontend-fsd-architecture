@@ -18,6 +18,15 @@ type Props = {
     bootstrap?: boolean;
 };
 
+/**
+ * Auth Provider
+ * Wraps application and provides authentication context.
+ * Initializes auth events bridge.
+ * @see AuthContext
+ * @props children - React children
+ * @props bootstrap - Whether to bootstrap auth state on mount (default: true)
+ * @returns React component
+ */
 export function AuthProvider({ children, bootstrap = true }: Props) {
     // init bridge once
     useEffect(() => {

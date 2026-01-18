@@ -18,6 +18,11 @@ export type MeResponse = {
     user: User;
 };
 
+/**
+ * Auth Service
+ * Handles authentication-related API calls.
+ * Manages access token storage.
+ */
 export const authService = {
     /**
      * Returns the current session user (role + permissions).

@@ -5,6 +5,11 @@ import { authService, type MeResponse } from "@/features/auth";
 import type { Permission, Role } from "@/entities/user";
 import { ApiError } from "@/shared/api/http";
 
+/**
+ * Ensures that the /me data is available and fresh.
+ * Returns the MeResponse or null if anonymous.
+ * Used in route guards.
+ */
 async function ensureMe(): Promise<MeResponse | null> {
     try {
         const me = await queryClient.ensureQueryData({
@@ -22,6 +27,11 @@ async function ensureMe(): Promise<MeResponse | null> {
     }
 }
 
+/**
+ * Route guard: requires authentication.
+ * Redirects to /login if not authenticated.
+ * @returns Route loader function
+ */
 export function requireAuth() {
     return async () => {
         const me = await ensureMe();
@@ -31,6 +41,13 @@ export function requireAuth() {
     };
 }
 
+/**
+ * Route guard: requires specific role.
+ * Redirects to /login if not authenticated.
+ * Redirects to /forbidden if role does not match.
+ * @param role Required role
+ * @returns Route loader function
+ */
 export function requireRole(role: Role) {
     return async () => {
         const me = await ensureMe();
@@ -40,6 +57,13 @@ export function requireRole(role: Role) {
     };
 }
 
+/**
+ * Route guard: requires specific permission.
+ * Redirects to /login if not authenticated.
+ * Redirects to /forbidden if permission is missing.
+ * @param permission Required permission
+ * @returns Route loader function
+ */
 export function requirePermission(permission: Permission) {
     return async () => {
         const me = await ensureMe();

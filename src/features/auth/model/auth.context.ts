@@ -5,6 +5,10 @@ import type { useMeQuery } from "./auth.queries";
 
 export type AuthStatus = "loading" | "authenticated" | "anonymous";
 
+/**
+ * Auth Context Value
+ * Provides authentication state and actions.
+ */
 export type AuthContextValue = {
     status: AuthStatus;
     user: User | null;
